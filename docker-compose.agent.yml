@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  # 1) LiteLLM proxy -> points to your local Ollama
+  litellm:
+    image: ghcr.io/berriai/litellm:latest
+    command:
+      - "--host=0.0.0.0"
+      - "--port=4000"
+      - "--model=ollama/qwen2.5-coder:14b"
+      # if you want to forward extra headers, add flags here
+    environment:
+      # Tell LiteLLM where Ollama is (running on your HOST)
+      # On Docker Desktop (Mac/Win), host.docker.internal works by default
+      LITELLM_OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # needed on Linux
+
+  # 2) Your CrewAI agent sandbox
+  agent:
+    build:
+      context: .
+      dockerfile: agent/Dockerfile
+    depends_on:
+      - litellm
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace:rw
+    environment:
+      OPENAI_API_KEY: "sk-local-anything"
+      OPENAI_API_BASE: "http://litellm:4000/v1"
+      # Optional: give the agent a “time budget” or your own flags via env
+    # If you want the agent to run for hours w/o attaching, uncomment:
+    # restart: unless-stopped
