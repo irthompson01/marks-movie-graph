@@ -11,11 +11,11 @@ ARG USER=runner
 ARG UID=1000
 RUN useradd -m -u ${UID} ${USER}
 
-COPY requirements.txt /workspace/requirements.txt
-# Python deps (pin minimal set)
-# crewai-tools is optional; include if you use File/Directory tools
-# RUN pip install -r workspace/requirements.txt --no-cache-dir
-RUN pip install 'litellm[proxy]' crewai crewai-tools pydantic
+COPY requirements.txt /tmp/requirements.txt
+# Python deps (install from requirements.txt with setuptools fix for distutils)
+RUN pip install --upgrade pip setuptools && \
+    pip install -r /tmp/requirements.txt --no-cache-dir && \
+    rm /tmp/requirements.txt
 # Workdir where we mount the host repo
 WORKDIR /workspace
 

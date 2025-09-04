@@ -1,6 +1,6 @@
 # crew_runner.py
 from crewai import Agent, Task, Crew, Process
-from crewai_tools import FileReadTool, FileWriteTool, DirectoryReadTool, CodeDocsSearchTool
+from crewai_tools import FileReadTool, FileWriterTool, DirectoryReadTool, CodeDocsSearchTool
 import os, subprocess
 
 REPO = os.getcwd()
@@ -61,7 +61,7 @@ coder = Agent(
     verbose=True,
     allow_delegation=False,
     tools=[
-        FileReadTool(), FileWriteTool(), DirectoryReadTool(),
+        FileReadTool(), FileWriterTool(), DirectoryReadTool(),
     ]
 )
 
@@ -71,7 +71,7 @@ tester = Agent(
     backstory="You ensure movie database applications are thoroughly tested with Neo4j integration tests, API endpoint validation, and end-to-end user workflows.",
     verbose=True,
     allow_delegation=False,
-    tools=[FileReadTool(), FileWriteTool(), DirectoryReadTool()]
+    tools=[FileReadTool(), FileWriterTool(), DirectoryReadTool()]
 )
 
 tasks = [
