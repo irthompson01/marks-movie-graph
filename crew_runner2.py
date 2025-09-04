@@ -1,5 +1,6 @@
 # crew_runner.py
 from crewai import Agent, Task, Crew, Process
+from crewai_tools import FileReadTool, FileWriterTool, DirectoryReadTool
 import os, subprocess
 
 REPO = os.getcwd()
@@ -20,6 +21,9 @@ researcher = Agent(
     backstory="You break complex builds into actionable steps.",
     verbose=True,
     allow_delegation=False,
+    tools=[
+        FileReadTool(), FileWriterTool(), DirectoryReadTool(),
+    ]
 )
 
 architect = Agent(
@@ -28,6 +32,9 @@ architect = Agent(
     backstory="You design scalable graph-backed apps.",
     verbose=True,
     allow_delegation=False,
+    tools=[
+        FileReadTool(), FileWriterTool(), DirectoryReadTool(),
+    ]
 )
 
 # NOTE: No tools yet; get files written via output_file on tasks
