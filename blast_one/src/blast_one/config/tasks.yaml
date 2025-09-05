@@ -1,0 +1,67 @@
+research_task:
+  description: >
+    Conduct deep-dive research on {topic} (an industrial abrasive blasting and
+    coatings company). Capture a current-state picture of the business and its
+    data landscape. Focus on: company overview, products/services, customers and
+    markets, operating model, value proposition, tech and automation signals,
+    and especially data sources and flows across CRM, ERP, e-commerce, service,
+    projects, finance, inventory, telemetry/IoT, and analytics. Identify key KPIs
+    and decision points, pain points, risks/compliance concerns, and where data
+    quality, accessibility, or timeliness limit value.
+    The current year is 2024—ensure recency and cite sources when possible.
+  expected_output: >
+    A structured research brief with these sections:
+    - Company overview and business model
+    - Offerings and target markets
+    - Operating model and key processes
+    - Data systems inventory (source, owner, purpose, data domains)
+    - Data flow narrative (from source to analytics/decisioning)
+    - Core KPIs and where they originate
+    - Pain points and gaps (with evidence)
+    - Opportunities for value using data
+    Provide concise bullet points under each section.
+  agent: researcher
+
+planning_task:
+  description: >
+    Transform research findings into a pragmatic 40-hour-per-month engagement
+    plan to improve {topic}'s data capabilities. Prioritize highest-ROI work and
+    define phases, milestones, deliverables, dependencies, risks, and success
+    metrics. Include a time-allocation breakdown that fits 40 hours/month and a
+    30-60-90 day roadmap with quick wins and foundations (data capture, ELT,
+    modeling, dashboards, governance).
+  expected_output: >
+    A detailed plan containing:
+    - Objectives and measurable outcomes (KPIs, SLAs)
+    - Stakeholders and responsibilities
+    - 30/60/90-day roadmap with milestones
+    - Monthly 40-hour allocation by workstream (e.g., ingestion, modeling,
+      analytics, governance, enablement) with hour estimates
+    - Prioritized backlog with impact/effort rationale
+    - Assumptions, dependencies, and risks with mitigations
+    - Definition of done and acceptance criteria for each deliverable
+  agent: project_planner
+
+reporting_task:
+  description: >
+    Produce a data strategy and investigation project proposal for {topic} that
+    surfaces underlying data issues and lays out how to discover, validate, and
+    resolve them. Convert research and planning into a stakeholder-ready plan
+    including discovery tracks, pilots/POCs, measurement, and a 40-hour/month
+    operating cadence. Emphasize business impact (revenue, margin, throughput,
+    safety) with clear KPIs, governance checkpoints, and timelines.
+  expected_output: >
+    A proposal in markdown with sections:
+    - Executive summary (problems, outcomes, and approach in one page)
+    - Current state and gap analysis (systems, data domains, flows, pain points)
+    - Investigation plan (hypotheses, discovery activities, interviews, data
+      profiling, lineage mapping, access requests)
+    - Pilots/POCs (each with objective, scope, success criteria, data needed,
+      approach, timeline, and estimated hours)
+    - Recommended architecture and tooling approach
+    - Governance, quality, and security approach (controls, SLAs, ownership)
+    - Roadmap and prioritized backlog (with impact/effort rationale)
+    - 40-hour/month scope, timeline, and hour allocation
+    - KPIs, SLAs, and measurement plan
+    - Risks, assumptions, and next steps
+  agent: reporting_analyst
